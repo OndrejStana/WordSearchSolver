@@ -89,7 +89,6 @@ public class WordSearchApplicationTests
         await _wordSearchApplication.RunAsync([filePath]);
 
         // Assert
-        Assert.That(_wordSearchApplication.Result, Is.EqualTo(resolvedResult));
         VerifyLogMessage(LogLevel.Information, WordSearchApplication.ResultMessage.Replace("{Result}", resolvedResult), Times.Once());
     }
 

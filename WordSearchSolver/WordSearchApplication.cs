@@ -12,8 +12,6 @@ public class WordSearchApplication : IWordSearchApplication
     internal const string ErrorOccurredMessage = "An error occurred: {Message}";
     internal const string ResultMessage = "Result: {Result}";
 
-    public string? Result { get; private set; }
-
     private readonly IJsonReaderService _jsonReaderService;
     private readonly IJsonValidatorService _jsonValidatorService;
     private readonly IResolverService _resolverService;
@@ -52,8 +50,8 @@ public class WordSearchApplication : IWordSearchApplication
                 return;
             }
             
-            Result = _resolverService.Resolve(input.Matrix.ToGrid(), input.Words, input.CrossOnlyFirstOccurence);
-            _logger.LogInformation(ResultMessage, Result);
+            var result = _resolverService.Resolve(input.Matrix.ToGrid(), input.Words, input.CrossOnlyFirstOccurence);
+            _logger.LogInformation(ResultMessage, result);
         }
         catch (Exception ex)
         {
